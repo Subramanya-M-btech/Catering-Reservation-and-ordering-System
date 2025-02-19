@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register - Catering Reservation System</title>
+  </head>
+  <style>
+    /* Global Reset and Body styles remain the same */
+
+    /* Register Container */
+    .register-container {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      animation: slideIn 1s ease-out;
+    }
+
+    /* Form Title */
+    .register-form h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .register-form p {
+      font-size: 14px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    /* Input Group */
+    .input-group {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 10px 15px;
+      background: none;
+      border: 2px solid #fff;
+      border-radius: 25px;
+      outline: none;
+      font-size: 16px;
+      color: black;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .input-group input:focus {
+      border-color: #ff5722;
+      box-shadow: 0 0 10px #ff5722;
+    }
+
+    .input-group label {
+      position: absolute;
+      top: 50%;
+      left: 15px;
+      transform: translateY(-50%);
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.7);
+      transition: all 0.3s ease-in-out;
+      pointer-events: none;
+    }
+
+    .input-group input:focus ~ label,
+    .input-group input:not(:placeholder-shown) ~ label {
+      top: -10px;
+      font-size: 12px;
+      color: #ff5722;
+    }
+
+    /* Button */
+    .register-btn {
+      width: 100%;
+      padding: 12px;
+      background: #ff5722;
+      border: none;
+      color: #fff;
+      font-size: 16px;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      box-shadow: 0 0 5px #ff5722;
+    }
+
+    .register-btn:hover {
+      background: #ff7043;
+      box-shadow: 0 0 15px #ff5722;
+    }
+
+    /* Login Link */
+    .login-link {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .login-link a {
+      color: #ff7043;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .login-link a:hover {
+      color: #ff5722;
+    }
+
+    /* Keyframe Animation */
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @media (max-width: 768px) {
+      .register-container {
+        width: 90%;
+        padding: 20px;
+      }
+
+      .register-form h2 {
+        font-size: 22px;
+      }
+
+      .input-group input {
+        font-size: 14px;
+      }
+
+      .register-btn {
+        font-size: 14px;
+      }
+    }
+  </style>
+  <body>
+    <!-- Register Container -->
+    <div class="register-container">
+      <div class="register-form">
+        <h2>Create an Account</h2>
+        <p>Join us to explore amazing catering services!</p>
+        <form id="registerForm">
+          <div class="input-group">
+            <input type="text" id="fullname" placeholder="Full Name" required />
+            <label for="fullname">Full Name</label>
+          </div>
+          <div class="input-group">
+            <input type="email" id="email" placeholder="Email" required />
+            <label for="email">Email</label>
+          </div>
+          <div class="input-group">
+            <input
+              type="password"
+              id="password"
+              placeholder="Password"
+              required
+            />
+            <label for="password">Password</label>
+          </div>
+          <div class="input-group">
+            <input
+              type="password"
+              id="confirm-password"
+              placeholder="Confirm Password"
+              required
+            />
+            <label for="confirm-password">Confirm Password</label>
+          </div>
+          <button type="submit" class="register-btn">Register</button>
+          <p class="login-link">
+            Already have an account? <a href="login.html">Log In</a>
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const registerForm = document.getElementById("registerForm");
+      
+        registerForm.addEventListener("submit", function (event) {
+          event.preventDefault();
+      
+          const password = document.getElementById("password").value;
+          const confirmPassword = document.getElementById("confirm-password").value;
+      
+          // Check if passwords match
+          if (password !== confirmPassword) {
+            alert("Passwords do not match!");
+            return;
+          }
+      
+          // If validation passes, submit the form or proceed with registration
+          alert("Registration successful!");
+          window.location.href = "index.html"; // Redirect to home page (or dashboard)
+        });
+      });
+      
+    </script>
+  </body>
+</html>

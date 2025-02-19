@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catering Reservation and Ordering System</title>
+    <meta name="description" content="Explore our Catering Reservation and Ordering System. Authentic Indian cuisine, personalized catering services, and online reservations!">
+    <meta name="keywords" content="Catering, Indian Food, Online Reservation, Event Catering">
+    <meta name="author" content="Jatin Khatik">
+
+    <style>
+        :root {
+            --primary-color: #ff6b6b;
+            --secondary-color: #4ecdc4;
+            --accent-color: #ffe66d;
+            --dark-color: #2c3e50;
+            --light-color: #f7f9fc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-color);
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            overflow: hidden;
+            border-radius: 50%;
+            border: 3px solid var(--accent-color);
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
+
+        .rounded-logo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .rounded-logo:hover {
+            transform: scale(1.1);
+        }
+
+        #nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        #nav-menu a {
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        #nav-menu a:hover {
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+        }
+
+        /* Hero Section */
+        #home {
+            padding-top: 150px;
+            min-height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero {
+            padding: 2rem;
+            background: rgba(0,0,0,0.6);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Slider Styles */
+        .slider-container {
+            margin: 4rem auto;
+            width: 90%;
+            max-width: 1200px;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 500px;
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        /* Footer Styles */
+        .modern-footer {
+            background: linear-gradient(135deg, var(--dark-color), #1a1a1a);
+            color: white;
+            padding: 4rem 0 1rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            padding: 0 2rem;
+        }
+
+        .footer-section {
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-media {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .social-media img {
+            width: 40px;
+            height: 40px;
+            transition: transform 0.3s ease;
+        }
+
+        .social-media img:hover {
+            transform: rotate(360deg) scale(1.2);
+        }
+
+        .newsletter-form input {
+            padding: 0.8rem;
+            border: none;
+            border-radius: 25px;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-form button {
+            padding: 0.8rem 2rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .newsletter-form button:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Order Animation */
+        #order-animation {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(46, 204, 113, 0.9);
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            z-index: 1000;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            #nav-menu {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                flex-direction: column;
+                background: var(--dark-color);
+                padding: 2rem;
+                width: 80%;
+                height: 100vh;
+                transition: right 0.3s ease;
+            }
+            
+            .slider {
+                height: 300px;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <img src="images/logo.jpg" alt="Catering Logo" class="rounded-logo">
+        </div>
+        
+        <nav id="nav-menu">
+            <a href="index.html">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="profile.html">Profile</a>
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+        </nav>
+    </header>
+    
+    <!-- Home Section -->
+    <section id="home">
+        <div class="hero">
+            <h1>Explore Authentic Indian Catering</h1>
+            <p>Delicious, hand-crafted food from the heart of rural India delivered globally.</p>
+        </div>
+    </section>
+  
+    <!-- Image Slider -->
+    <div class="slider-container">
+        <div class="slider">
+            <img src="images/Welcome Feast.jpg" alt="Delicious Food 1" class="slide">
+            <img src="images/Signature Dishes.jpg" alt="Delicious Food 2" class="slide">
+            <img src="images/Event Catering.jpg" alt="Delicious Food 3" class="slide">
+            <img src="images/Happy Customers.jpg" alt="Delicious Food 4" class="slide">
+        </div>
+    </div>
+
+    <!-- Order Confirmation Animation -->
+    <section id="order-animation" class="hidden">
+        <p>Your order has been placed successfully!</p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="modern-footer">
+        <div class="footer-container">
+            <!-- Quick Links -->
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="register.html">Register</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </div>
+    
+            <!-- Contact Information -->
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p><strong>Email:</strong> jatinkhatik@cateringservice.com</p>
+                <p><strong>Phone:</strong> +9023258621</p>
+                <p><strong>Address:</strong> 123 Main Street, Anytown, USA</p>
+            </div>
+    
+            <!-- Social Media Links -->
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-media">
+                    <a href="#"><img src="images/facebook-icon.png" alt="Facebook"></a>
+                    <a href="#"><img src="images/instagram-icon.png" alt="Instagram"></a>
+                    <a href="#"><img src="images/twitter-icon.png" alt="Twitter"></a>
+                    <a href="#"><img src="images/linkedin-icon.png" alt="LinkedIn"></a>
+                </div>
+            </div>
+    
+            <!-- Newsletter Signup -->
+            <div class="footer-section">
+                <h3>Subscribe to Our Newsletter</h3>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Catering Reservation System | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    /* About Catering Section Styles */
+.about-catering {
+    padding: 5rem 5%;
+    background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+                url('images/background-pattern.jpg');
+    background-attachment: fixed;
+    margin: 4rem 0;
+}
+
+.about-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-content h2 {
+    text-align: center;
+    color: var(--dark-color);
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.about-content h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: var(--primary-color);
+}
+
+.about-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    line-height: 1.8;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+.about-text p {
+    text-align: justify;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about-catering {
+        padding: 3rem 1.5rem;
+        margin: 2rem 0;
+    }
+
+    .about-content h2 {
+        font-size: 2rem;
+    }
+
+    .about-text {
+        font-size: 1rem;
+    }
+}
+</body>
+</html>
